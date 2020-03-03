@@ -1,0 +1,45 @@
+import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
+
+import { connect } from "react-redux";
+import { searchProduct } from "../redux/actions/product";
+class AdminNavbar extends Component {
+    searchProduct = (event) => {
+        // console.log(event.target.value)
+        this.props.dispatch(searchProduct(event.target.value));
+      }
+    render(){
+    return (
+        <nav className='navbar sticky-top navbar-expand-lg navbar-light' style={{ background: 'white' }}>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              
+              <div className='container'>
+                  <div className='col-lg-12'>
+                      <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+                          <ul className='navbar-nav mr-auto' style={{margin:'auto'}}>
+                              <li className='nav-item' >
+                                  <Link className='nav-link' to='/' style={{margin: 'auto', fontFamily: 'Arial Black, Gadget, sans-serif', fontSize:'20px', padding:'10px', color: '#4285f4' }}>The Mahardika FnB</Link>
+                              </li>
+                          </ul>
+                          <form className='form-inline my-3 my-lg-0'>
+                              <input className='form-control mr-sm-2' type='text' placeholder='Search Name' aria-label='Search' onChange={this.searchProduct}/>
+                          </form>
+                      </div>
+                  </div>
+                  {/* <p style={{margin: 'auto', fontFamily: 'Arial Black, Gadget, sans-serif',  fontSize:'15px'}}>Hi, Adia {localStorage.getItem('name')} <Link to="#" onClick={onLogout.bind(this)}>Logout</Link></p> */}
+              </div>
+          </nav>
+      )
+    }
+}
+// export default Navbar
+const searchStateToProps = (state) => {
+    //console.log(state)
+    return {
+      products: state.products.products
+    }
+  }
+  
+  export default connect(searchStateToProps)(AdminNavbar)
