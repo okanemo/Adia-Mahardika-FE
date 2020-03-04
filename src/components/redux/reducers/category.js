@@ -1,5 +1,5 @@
 const initialState = {
-    category: []
+    categories: []
 }
 
 const category = (state = initialState, action) => {
@@ -15,7 +15,7 @@ const category = (state = initialState, action) => {
         case 'GET_CATEGORY_FULFILLED':
             return{
                 ...state,
-                category: action.payload.data.result
+                categories: action.payload.data.result
             }
 
         case 'POST_CATEGORY_PENDING':
@@ -29,10 +29,45 @@ const category = (state = initialState, action) => {
             }
         
         case 'POST_CATEGORY_FULFILLED':
-            const newDataCategory = [...state.category, action.payload.data.result];
+            const newDataCategory = [...state.categories, action.payload.data.result];
             return{
                 ...state,
-                category: newDataCategory
+                categories: newDataCategory
+            }
+        case 'PATCH_CATEGORY_PENDING':
+            return{
+                ...state
+            }
+
+        case 'PATCH_CATEGORY_REJECTED':
+            return{
+                ...state
+            }
+        
+        case 'PATCH_CATEGORY_FULFILLED':
+            const newCategoryAfterUpdate = state.categories.map(category => {
+                if (category.id === action.payload.data.result.id) {
+                    return action.payload.data.result;
+                }
+                return category;
+            })
+            return {
+                ...state,
+                categories: newCategoryAfterUpdate
+            }
+        case 'DELETE_CATEGORY_PENDING':
+            return {
+                ...state
+            }
+        case 'DELETE_CATEGORY_REJECTED':
+            return {
+                ...state
+            }
+        case 'DELETE_CATEGORY_FULFILLED':
+            const newCategoryAfterDelete = state.categorys.filter(category => category.id !== action.payload.data.result)
+            return {
+                ...state,
+                category: newCategoryAfterDelete
             }
         default:
             return state;

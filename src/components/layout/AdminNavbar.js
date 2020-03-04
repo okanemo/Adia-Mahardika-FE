@@ -10,7 +10,7 @@ class AdminNavbar extends Component {
       }
     render(){
     return (
-        <nav className='navbar sticky-top navbar-expand-lg navbar-light' style={{ background: 'white' }}>
+        <nav className='navbar sticky-top navbar-expand-lg navbar-light' style={{ background: '#4285f4' }}>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
               </button>
@@ -20,7 +20,7 @@ class AdminNavbar extends Component {
                       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
                           <ul className='navbar-nav mr-auto' style={{margin:'auto'}}>
                               <li className='nav-item' >
-                                  <Link className='nav-link' to='/' style={{margin: 'auto', fontFamily: 'Arial Black, Gadget, sans-serif', fontSize:'20px', padding:'10px', color: '#4285f4' }}>The Mahardika FnB</Link>
+                                  <Link className='nav-link' to='/' style={{margin: 'auto', fontFamily: 'Arial Black, Gadget, sans-serif', fontSize:'20px', padding:'10px', color: 'white' }}>The Mahardika FnB</Link>
                               </li>
                           </ul>
                           <form className='form-inline my-3 my-lg-0'>
@@ -34,12 +34,5 @@ class AdminNavbar extends Component {
       )
     }
 }
-// export default Navbar
-const searchStateToProps = (state) => {
-    //console.log(state)
-    return {
-      products: state.products.products
-    }
-  }
-  
-  export default connect(searchStateToProps)(AdminNavbar)
+
+export default connect()(AdminNavbar)

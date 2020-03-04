@@ -6,10 +6,14 @@ import { connect } from 'react-redux';
 import { getAllCategory } from '../../redux/actions/category';
 
 import AddCategory from './AddCategory';
-import CategoryItem from './AdminCategoryItem'
+import CategoryItem from './CategoryItem'
+import EditCategory from './EditCategory'
 
 class Category extends Component {
-
+  state = {
+    showDelete: false,
+    selectCategoryDelete: null
+  }
   componentDidMount() {
     this.getAllCategory();
   }
@@ -17,10 +21,27 @@ class Category extends Component {
   getAllCategory() {
     this.props.dispatch(getAllCategory());
   }
+  onShowEdit = event => {
+    this.setState({
+        showEdit: true
+    })
+  }
+
+  onCloseEdit = () => {
+      this.setState({
+          showEdit: false
+      })
+  }
+  onSelectCategoryEdit = category => {
+    this.setState({
+        selectCategoryEdit: category,
+        showEdit: true
+    })
+  }
 
   render() {
-    const { category } = this.props;
-    const listCategory = category.map((category, index) => <CategoryItem key={index} category={category} />);
+    const { categories } = this.props;
+    const listCategories = categories.map((category, index) => <CategoryItem key={index} category={category} onSelectCategoryEdit={this.onSelectCategoryEdit}/>);
     return (
       <Fragment>
         <Container>
@@ -40,20 +61,21 @@ class Category extends Component {
                 </tr>
               </thead>
               <tbody>
-                {listCategory}
+                {listCategories}
               </tbody>
             </Table>
           </Row>
+          <EditCategory show={this.state.showEdit} onHide={this.onCloseEdit} category={this.state.selectCategoryEdit} />
         </Container>
       </Fragment>
     )
   }
 }
 
-const categoryStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    category: state.category.category
+    categories: state.category.categories
   }
 }
 
-export default connect(categoryStateToProps)(Category);
+export default connect(mapStateToProps)(Category);

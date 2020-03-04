@@ -20,3 +20,24 @@ export const postCategory = (data) => {
         })
     }
 }
+
+export const patchCategory = (data, categoryId) => {
+    return{
+        type: 'PATCH_CATEGORY',
+        payload: axios({
+            method: "PATCH",
+            url: `http://localhost:5000/category/${categoryId}`,
+            data: data
+        })
+    }
+}
+
+export const deleteCategory = ( categoryId) => {
+    return{
+        type: 'DELETE_CATEGORY',
+        payload: axios({
+            method: "DELETE",
+            url: `http://localhost:5000/category/${categoryId}`
+        })
+    }
+}

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 
 import { connect } from 'react-redux'
-import { getAllProduct } from '../../redux/actions/product'
+import { getAllProduct, paginationProduct } from '../../redux/actions/product'
 import AdminCardProduct from './AdminCardProduct'
 import DeleteProduct from './DeleteProduct'
 import AdminSidenav from '../../layout/AdminSidenav'
@@ -49,14 +49,19 @@ class AdminProducts extends Component {
   }
 
   onSelectProductDelete = (product) => {
+    // console.log(product)
     this.setState({
       selectProductDelete: product,
       showDelete: true
     })
   }
 
+  paginationProduct = (event) => {
+    // console.log(paginationProduct)
+    this.props.dispatch(paginationProduct(event.target.id))
+  }
   render () {
-    const { products } = this.props
+    const { products, pagination } = this.props
     const showProduct = products.map((item, index) => {
       return (
         <AdminCardProduct product={item} key={index} selectProductItem={this.actSelectProduct} onSelectProductDelete={this.onSelectProductDelete}/>
@@ -74,6 +79,18 @@ class AdminProducts extends Component {
               </div>
             </div>
           </div>
+          <div className="row">
+                    <nav aria-label="Page navigation example">
+
+                        <ul className="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            {pagination.map((pagination) => (
+                                <li class="page-item" key={pagination}><a class="page-link" onClick={this.paginationProduct} id={pagination}>{pagination}</a></li>
+                            ))}
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
         </div>
         <DeleteProduct show={this.state.showDelete} onHide={this.handleCloseDelete} product={this.state.selectProductDelete}/>
       </Fragment>
@@ -84,7 +101,8 @@ class AdminProducts extends Component {
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    products: state.products.products
+    products: state.products.products,
+    pagination: state.products.pagination
   }
 }
 

@@ -5,7 +5,8 @@ import Home from './components/home/Home'
 import { Provider } from 'react-redux';
 import store from './components/redux/store';
 import AdminProduct from './components/administrator/Product/AdminProduct';
-import AdminCategory from './components/administrator/Category/AdminCategory';
+import AdminCategory from './components/administrator/Category/Category';
+import AdminUser from './components/administrator/User/User'
 // import Login from './components/auth/Login'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           {/* <Route path="/login" component={Login} /> */}
           <Route exact path='/adminproduct' component={AdminProduct} />
           <Route exact path='/admincategory' component={AdminCategory} />
+          <Route exact path='/adminuser' component={AdminUser} />
         </div>
       </Router>
     </Provider>

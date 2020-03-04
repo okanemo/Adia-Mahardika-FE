@@ -3,6 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { postProduct } from '../../redux/actions/product'
+import { getAllCategory } from '../../redux/actions/category'
 
 class AddProduct extends Component {
     state = {
@@ -18,7 +19,7 @@ class AddProduct extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
-        console.log(event.target.value)
+        // console.log(event.target.value)
     }
 
     onChangeImage = event => {
@@ -30,6 +31,7 @@ class AddProduct extends Component {
     postProduct = async (event) => {
         event.preventDefault();
         let data = new FormData();
+        
         data.append("name", this.state.name);
         data.append("description", this.state.description);
         data.append("image", this.state.image);
@@ -37,14 +39,18 @@ class AddProduct extends Component {
         data.append("quantity", this.state.quantity);
         data.append("category", this.state.category);
 
-
         await this.props.dispatch(postProduct(data));
         this.props.onHide();
-        // this.props.history.push('/adminproduct')
+        // const {history} = this.props
+        // history.push('/adminproduct')
     }
 
+    componentDidMount () {
+        this.props.dispatch(getAllCategory())
+    }
     render() {
-        const { show, onHide } = this.props
+        const { show, onHide, categories } = this.props
+        console.log(this.props)
         return (
             <Modal show={show} onHide={onHide}>
                 <Modal.Header closeButton>
@@ -62,21 +68,21 @@ class AddProduct extends Component {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Price </Form.Label>
-                            <Form.Control type="text" placeholder="Enter Price..." name="price" onChange={this.onCreateProduct} />
+                            <Form.Control type="number" placeholder="Enter Price..." name="price" onChange={this.onCreateProduct} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Quantity</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Quantity..." name="quantity" onChange={this.onCreateProduct} />
+                            <Form.Control type="number" placeholder="Enter Quantity..." name="quantity" onChange={this.onCreateProduct} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Category</Form.Label>
                             <Form.Control type="text" placeholder="Enter Category..."  name="category" onChange={this.onCreateProduct} as="select">
                             <option selected value={0} disabled>Choose Category</option>
-                            <option value={'Indonesian Food'}>Indonesian Food</option>
-                            <option value={'Beverages'}>Beverages</option>
-                            <option value={'Western'}>Western</option>
-                            <option value={'Chinese Food'}>Chinese Food</option>
-                            <option value={'Middle Eastern'}>Middle Eastern</option>
+
+                            {categories.map((category,index) => 
+                            <option key={index} value={category.id}>{category.name}</option>
+                            )}
+                           
                             </Form.Control>
                         </Form.Group>
                         <Form.Group>
@@ -92,7 +98,12 @@ class AddProduct extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+console.log(state)
+    return {
+        categories: state.category.categories
+    }
+}
 
 
-
-export default connect()(AddProduct);
+export default connect(mapStateToProps)(AddProduct);

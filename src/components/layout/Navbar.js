@@ -42,11 +42,5 @@ class Navbar extends Component {
     }
 }
 // export default Navbar
-const searchStateToProps = (state) => {
-    //console.log(state)
-    return {
-      products: state.products.products
-    }
- }
   
-export default connect(searchStateToProps)(Navbar)
+export default connect()(Navbar)

@@ -4,25 +4,25 @@ import {connect} from 'react-redux'
 import {deleteProduct} from '../../redux/actions/product'
 
 const DeleteProduct = (props) => {
-    const{ product, show, onHide } = props
-    const onCancelHandle = (event) => {
+    const{ product, show, onHide, dispatch } = props
+
+    const onCancelDelete = (event) => {
         event.preventDefault()
         onHide()
     }
-    const onDeleteHandle = async (event) => {
-        console.log("inidia")
+    const onDeleteProduct = async (event) => {
         event.preventDefault()
-
-        await this.props.dispatch(deleteProduct(product.id))
+        await dispatch(deleteProduct(product.id))
+        await onHide()
     }
     return(
         <Modal show={show} onHide={onHide} variant="lg">
-            <Modal.Header>
-                <p>Apakah Anda Yakin Ingin Menghapus Book {product ? product.name : ""} ini ?</p>
-            </Modal.Header>
             <Modal.Body>
-                <Button variant="primary" size="sm" onClick={onCancelHandle} style={{ marginRight: "10px" }}>Cancel</Button>
-                <Button variant="danger" size="sm" onClick={onDeleteHandle}>Delete</Button>
+                <p>Are you sure want to delete this {product ? product.name : ""} product ?</p>
+            </Modal.Body>
+            <Modal.Body align='right'>
+                <Button style={{ background: '#4285f4' }} size="sm" onClick={onCancelDelete} style={{ marginRight: "10px" }}>Cancel</Button>
+                <Button variant="light" size="sm" onClick={onDeleteProduct}>Delete</Button>
             </Modal.Body>
         </Modal>
     )

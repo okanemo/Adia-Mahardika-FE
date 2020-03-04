@@ -49,3 +49,32 @@ export const filterProduct = (data) => {
         })
     }
 }
+
+export const sortProduct = (sortBy, orderBy) => {
+    return {
+        type: 'SORT_PRODUCT',
+        payload: axios({
+            method: 'GET',
+            url: `http://localhost:5000/product?sortBy=${sortBy}&sortBy=${orderBy}`
+        })
+    }
+}
+
+export const paginationProduct = (page) => {
+    return {
+      type: 'PAGINATION',
+      payload: axios ({
+        method: 'GET',
+        url: `http://localhost:5000/product/?page=${page}`,
+      })
+    }
+  }
+// export const orderProduct = (data) => {
+//     return {
+//         type: 'ORDER_PRODUCT',
+//         payload: axios({
+//             method: 'GET',
+//             url: `http://localhost:5000/product/?category=${data}`
+//         })
+//     }
+// }

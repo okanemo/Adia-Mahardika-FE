@@ -1,19 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { getAllProduct } from '../redux/actions/product'
+import { getAllProduct, paginationProduct } from '../redux/actions/product'
 import CardProduct from '../product/CardProduct'
 import Sidenav from '../layout/Sidenav'
 class Products extends Component {
-  constructor(props) {
-      super(props);
-
-      this.state = {
+      state = {
           product: [],
           category: '',
           selectProduct: null
       }
-  }
+
   actSelectProduct = (products) => {
     this.setState({
         selectProduct: products
@@ -29,23 +26,13 @@ class Products extends Component {
    this.getAllProduct()
   }
 
-  filterProduct = (event) => {
-    event.preventDefault()
-    this.setState({
-        category: event.target.value
-    })
-    axios
-    .get(`http://localhost:5000/product/?category=${event.target.value}`)
-    .then(response => {
-        this.setState({ product: response.data.result })
-    })
-    .catch(error => {
-        console.log(error)
-    })
+  paginationProduct = (event) => {
+    // console.log(paginationProduct)
+    this.props.dispatch(paginationProduct(event.target.id))
   }
 
   render () {
-    const { products } = this.props
+    const { products, pagination } = this.props
     const showProduct = products.map((item, index) => {
       return (
         <CardProduct product={item} key={index} selectProductItem={this.actSelectProduct}/>
@@ -60,6 +47,18 @@ class Products extends Component {
             <div className='row' style={{display:'flex', overflowY:'scroll', height:'90vh'}}>
               {showProduct}
             </div>
+            <div className="row">
+                    <nav aria-label="Page navigation example">
+
+                        <ul className="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            {pagination.map((pagination) => (
+                                <li class="page-item" key={pagination}><a class="page-link" onClick={this.paginationProduct} id={pagination}>{pagination}</a></li>
+                            ))}
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
           </div>
           <div className='col-lg-2'>
                         Rencananya Cart
@@ -74,7 +73,8 @@ class Products extends Component {
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    products: state.products.products
+    products: state.products.products,
+    pagination: state.products.pagination
   }
 }
 
