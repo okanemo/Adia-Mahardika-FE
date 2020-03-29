@@ -18,11 +18,9 @@ class AddCategory extends Component {
 
     postCategory = async (event) => {
         event.preventDefault();
-        let data = new FormData();
-        data.append("name", this.state.name);
 
-        await this.props.dispatch(postCategory(data));
-        this.props.onHide();
+        await this.props.dispatch(postCategory(this.state));
+        await this.props.onHide();
         // this.props.history.push('/adminproduct')
     }
 
@@ -36,8 +34,8 @@ class AddCategory extends Component {
                 <Modal.Body>
                     <Form onSubmit={this.postCategory} >
                         <Form.Group>
-                            <Form.Label>Product Name </Form.Label>
-                            <Form.Control type="text" placeholder="Enter Product..." name="name" onChange={this.onCreateCategory} />
+                            <Form.Label>Category Name </Form.Label>
+                            <Form.Control type="text" placeholder="Enter Category..." name="name" onChange={this.onCreateCategory} />
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             SUBMIT

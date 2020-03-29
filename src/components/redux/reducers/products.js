@@ -1,7 +1,6 @@
 const initialState = {
     products: [],
     pagination: [],
-    product: null,
     isLoading: false
 }
 //console.log(initialState.products)
@@ -54,64 +53,105 @@ const products = (state = initialState, action) => {
                 isLoading: true
             }
         case 'DELETE_PRODUCT_FULFILLED':
-            const newDataProductsAfterDelete = state.products.filter(product => product.id !== action.payload.data.id)
+            const newDataProductsAfterDelete = state.products.filter(product => product.id !== action.payload.data.result)
             return{
                 ...state,
                 isLoading: false,
                 products: newDataProductsAfterDelete
             }
-        case 'SEARCH_PRODUCT_PENDING':
+        // case 'SEARCH_PRODUCT_PENDING':
+        //     return {
+        //         ...state,
+        //         isLoading: true
+        //     }
+        // case 'SEARCH_PRODUCT_REJECTED':
+        //     return {
+        //         ...state,
+        //         isLoading: true
+        //     }
+        // case 'SEARCH_PRODUCT_FULFILLED':
+        //     return {
+        //         ...state,
+        //         isLoading: false,
+        //         products: action.payload.data.result
+        //     }
+        // case 'FILTER_PRODUCT_PENDING':
+        //     return {
+        //         ...state,
+        //         isLoading: true
+        //     }
+        // case 'FILTER_PRODUCT_REJECTED':
+        //     return {
+        //         ...state,
+        //         isLoading: true
+        //     }
+        // case 'FILTER_PRODUCT_FULFILLED':
+        //     return {
+        //         ...state,
+        //         isLoading: false,
+        //         products: action.payload.data.result
+        //     }
+        // case 'SORT_PRODUCT_PENDING':
+        //     return {
+        //         ...state,
+        //         isLoading: true
+        //     }
+        // case 'SORT_PRODUCT_REJECTED':
+        //     return {
+        //         ...state,
+        //         isLoading: true
+        //     }
+        // case 'SORT_PRODUCT_FULFILLED':
+        //     return {
+        //         ...state,
+        //         isLoading: false,
+        //         products: action.payload.data.result
+        //     }
+        // case 'PAGINATION_FULFILLED':
+        //     return {
+        //         ...state,
+        //         products: action.payload.data.result
+        //     }
+        case 'PATCH_PRODUCT_PENDING':
             return {
                 ...state,
                 isLoading: true
             }
-        case 'SEARCH_PRODUCT_REJECTED':
+
+        case 'PATCH_PRODUCT_REJECTED':
             return {
                 ...state,
                 isLoading: true
             }
-        case 'SEARCH_PRODUCT_FULFILLED':
+
+        case 'PATCH_PRODUCT_FULFILLED':
+            const newProductAfterUpdate = state.products.map(product => {
+                if (product.id === action.payload.data.result.id) {
+                    return action.payload.data.result;
+                }
+                return product;
+            })
             return {
                 ...state,
                 isLoading: false,
-                products: action.payload.data.result
+                products: newProductAfterUpdate
             }
-        case 'FILTER_PRODUCT_PENDING':
+        case 'MODIFY_PRODUCT_PENDING':
             return {
                 ...state,
                 isLoading: true
             }
-        case 'FILTER_PRODUCT_REJECTED':
+        case 'MODIFY_PRODUCT_REJECTED':
             return {
                 ...state,
                 isLoading: true
             }
-        case 'FILTER_PRODUCT_FULFILLED':
+        case 'MODIFY_PRODUCT_FULFILLED':
             return {
                 ...state,
                 isLoading: false,
-                products: action.payload.data.result
-            }
-        case 'SORT_PRODUCT_PENDING':
-            return {
-                ...state,
-                isLoading: true
-            }
-        case 'SORT_PRODUCT_REJECTED':
-            return {
-                ...state,
-                isLoading: true
-            }
-        case 'SORT_PRODUCT_FULFILLED':
-            return {
-                ...state,
-                isLoading: false,
-                products: action.payload.data.result
-            }
-        case 'PAGINATION_FULFILLED':
-            return {
-                ...state,
-                products: action.payload.data.result
+                products: action.payload.data.result,
+                pagination: action.payload.data.totalPages
             }
         default:
             return state;

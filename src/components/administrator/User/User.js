@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col, Table } from 'react-bootstrap';
-
+import AdminNavbar from '../../layout/AdminNavbar'
+import AdminSidenav from '../../layout/AdminSidenav'
 import { connect } from 'react-redux';
 import { getAllUser } from '../../redux/actions/user';
 import UserItem from './UserItem'
@@ -20,6 +21,8 @@ class User extends Component {
     const listUser = user.map((user, index) => <UserItem key={index} user={user} />);
     return (
       <Fragment>
+        <AdminNavbar/>
+        <AdminSidenav/>
         <Container>
           <Row style={{ marginTop: "20px", marginBottom: "20px" }}>
             <Col>

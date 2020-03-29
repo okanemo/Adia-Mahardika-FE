@@ -6,7 +6,7 @@ import { patchCategory } from '../../redux/actions/category'
 
 class EditCategory extends Component {
     state = {
-        nameCategory: ''
+        name: ''
     }
 
     componentWillReceiveProps({ category }) {
@@ -15,7 +15,7 @@ class EditCategory extends Component {
 
     onSetValue = (category) => {
         this.setState({
-            nameCategory: category.nameCategory
+            name: category.name
         })
     }
 
@@ -27,9 +27,13 @@ class EditCategory extends Component {
 
     patchCategory = async (event) => {
         event.preventDefault()
-        const categoryId = this.props.category.id
-        await this.props.dispatch(patchCategory(categoryId, this.state))
+        const id = this.props.category.id
+        const data = {
+            name: this.state.name
+        }
+        await this.props.dispatch(patchCategory(data, id))
         await this.props.onHide()
+        console.log(data)
     }
 
     render() {
@@ -40,10 +44,10 @@ class EditCategory extends Component {
                     <Modal.Title>EDIT CATEGORY</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={this.updateCategory}>
+                    <Form onSubmit={this.patchCategory}>
                         <Form.Group>
                             <Form.Label>NAME</Form.Label>
-                            <Form.Control type="text" placeholder="Insert Name" name="nameCategory" onChange={this.onChangeValue} />
+                            <Form.Control type="text" placeholder="Insert Name" name="name" onChange={this.onChangeValue} />
                         </Form.Group>
                         <Button align='right' variant="primary" type="submit">
                             SUBMIT

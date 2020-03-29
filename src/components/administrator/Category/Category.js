@@ -1,17 +1,19 @@
 import React, { Component, Fragment } from 'react';
-import { withRouter } from 'react-router-dom';
-import { Form, Container, Row, Col, Button, Table } from 'react-bootstrap';
+import { Container, Row, Col, Table } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { getAllCategory } from '../../redux/actions/category';
-
-import AddCategory from './AddCategory';
+import AdminNavbar from '../../layout/AdminNavbar'
+import AdminSidenav from '../../layout/AdminSidenav'
 import CategoryItem from './CategoryItem'
 import EditCategory from './EditCategory'
+import DeleteCategory from './DeleteCategory'
 
 class Category extends Component {
   state = {
+    showEdit: false,
     showDelete: false,
+    selectCategoryEdit: null,
     selectCategoryDelete: null
   }
   componentDidMount() {
@@ -21,7 +23,7 @@ class Category extends Component {
   getAllCategory() {
     this.props.dispatch(getAllCategory());
   }
-  onShowEdit = event => {
+  onShowEdit = () => {
     this.setState({
         showEdit: true
     })
@@ -39,11 +41,30 @@ class Category extends Component {
     })
   }
 
+  onShowDelete = () => {
+    this.setState({
+      showDelete: true
+    })
+  }
+  onCloseDelete =() => {
+    this.setState({
+      showDelete: false
+    })
+  }
+  onSelectCategoryDelete = category => {
+    this.setState({
+      selectCategoryDelete: category,
+      showDelete: true
+    })
+  }
+
   render() {
     const { categories } = this.props;
-    const listCategories = categories.map((category, index) => <CategoryItem key={index} category={category} onSelectCategoryEdit={this.onSelectCategoryEdit}/>);
+    const listCategories = categories.map((category, index) => <CategoryItem key={index} category={category} onSelectCategoryEdit={this.onSelectCategoryEdit} onSelectCategoryDelete={this.onSelectCategoryDelete}/>);
     return (
       <Fragment>
+        <AdminNavbar/>
+        <AdminSidenav/>
         <Container>
           <Row style={{ marginTop: "20px", marginBottom: "20px" }}>
             <Col>
@@ -66,6 +87,7 @@ class Category extends Component {
             </Table>
           </Row>
           <EditCategory show={this.state.showEdit} onHide={this.onCloseEdit} category={this.state.selectCategoryEdit} />
+          <DeleteCategory show={this.state.showDelete} onHide={this.onCloseDelete} category={this.state.selectCategoryDelete} />
         </Container>
       </Fragment>
     )

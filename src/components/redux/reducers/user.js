@@ -38,37 +38,21 @@ const user = (state = initialState, action) => {
                 isLoading: false,
                 user: newDataUserAfterDelete
             }
-        case 'SEARCH_USER_PENDING':
-            return {
-                ...state,
-                isLoading: true
+        case 'POST_USER_PENDING':
+            return{
+                ...state
             }
-        case 'SEARCH_USER_REJECTED':
-            return {
-                ...state,
-                isLoading: true
+
+        case 'POST_USER_REJECTED':
+            return{
+                ...state
             }
-        case 'SEARCH_USER_FULFILLED':
-            return {
+        
+        case 'POST_USER_FULFILLED':
+            const newDataCategory = [...state.user, action.payload.data.result];
+            return{
                 ...state,
-                isLoading: false,
-                user: action.payload.data.result
-            }
-        case 'FILTER_USER_PENDING':
-            return {
-                ...state,
-                isLoading: true
-            }
-        case 'FILTER_USER_REJECTED':
-            return {
-                ...state,
-                isLoading: true
-            }
-        case 'FILTER_USER_FULFILLED':
-            return {
-                ...state,
-                isLoading: false,
-                user: action.payload.data.result
+                user: newDataCategory
             }
         default:
             return state;

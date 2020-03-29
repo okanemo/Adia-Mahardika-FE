@@ -23,8 +23,21 @@ class AddProduct extends Component {
     }
 
     onChangeImage = event => {
+        const image = event.target.files[0]
+        if (image.size > 1024 * 1024 * 3)
+        return alert('Cannot upload image with size more than 3MB')
+        const imageArray = image.name.split(".");
+        const imageExtension = imageArray[imageArray.length - 1].toLowerCase();
+        if (
+        imageExtension !== "png" &&
+        imageExtension !== "jpg" &&
+        imageExtension !== "jpeg" &&
+        imageExtension !== "gif"
+        )
+        return alert("Only can upload image!!")
         this.setState({
-            [event.target.name]: event.target.files[0]
+            image:image
+            // [event.target.name]: event.target.files[0]
         })
     }
 
@@ -60,23 +73,23 @@ class AddProduct extends Component {
                     <Form onSubmit={this.postProduct} encType="multipart/form-data">
                         <Form.Group>
                             <Form.Label>Product Name </Form.Label>
-                            <Form.Control type="text" placeholder="Enter Product..." name="name" onChange={this.onCreateProduct} />
+                            <Form.Control type="text" placeholder="Enter Product..." name="name" onChange={this.onCreateProduct} required/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Description </Form.Label>
-                            <Form.Control type="text" placeholder="Enter Description..." name="description" onChange={this.onCreateProduct} />
+                            <Form.Control type="text" placeholder="Enter Description..." name="description" onChange={this.onCreateProduct} required/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Price </Form.Label>
-                            <Form.Control type="number" placeholder="Enter Price..." name="price" onChange={this.onCreateProduct} />
+                            <Form.Control type="number" placeholder="Enter Price..." name="price" onChange={this.onCreateProduct} required/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Quantity</Form.Label>
-                            <Form.Control type="number" placeholder="Enter Quantity..." name="quantity" onChange={this.onCreateProduct} />
+                            <Form.Control type="number" placeholder="Enter Quantity..." name="quantity" onChange={this.onCreateProduct} required/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Category</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Category..."  name="category" onChange={this.onCreateProduct} as="select">
+                            <Form.Control type="text" placeholder="Enter Category..."  name="category" onChange={this.onCreateProduct} as="select" required>
                             <option selected value={0} disabled>Choose Category</option>
 
                             {categories.map((category,index) => 
@@ -87,7 +100,7 @@ class AddProduct extends Component {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>IMAGE</Form.Label>
-                            <Form.Control type="file" name="image" onChange={this.onChangeImage} />
+                            <Form.Control type="file" name="image" onChange={this.onChangeImage} required/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             SUBMIT

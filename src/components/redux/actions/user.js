@@ -19,22 +19,13 @@ export const deleteUser = (userId) => {
         })
     }
 }
-export const searchUser = (data) => {
-    return {
-        type: 'SEARCH_USER',
-        payload: axios({
-            method: 'GET',
-            url: `http://localhost:5000/user/?name=${data}`,
-        })
-    }
-}
 
-export const filterUser = (data) => {
-    return {
-        type: 'FILTER_USER',
+export const postUser = () => {
+    return{
+        type: 'POST_USER',
         payload: axios({
-            method: 'GET',
-            url: `http://localhost:5000/user/?category=${data}`
+            method: "POST",
+            url: "http://localhost:5000/user/register"
         })
     }
 }

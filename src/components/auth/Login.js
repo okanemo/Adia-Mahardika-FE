@@ -23,7 +23,6 @@ class Login extends Component{
 
     onSubmit = (event) => {
         event.preventDefault();
-        console.log('hahaa');
 
         axios
             .post("http://localhost:5000/user/login", this.state)
@@ -31,6 +30,7 @@ class Login extends Component{
                 console.log(response.data);
                 localStorage.setItem('token', response.data.result.token);
                 localStorage.setItem('user-id', response.data.result.id);
+                localStorage.setItem('status', response.data.result.status);
                 localStorage.setItem('isAuth', true);
                 this.props.history.push('/');
             })
@@ -42,19 +42,19 @@ class Login extends Component{
     render(){
         return(
             <div className="container">
-                <h4 style={{ marginTop: '10px' }}>Login</h4>
+                <h4 style={{ marginTop: '10px' }} align='center' style={{margin: 'auto', fontFamily: 'Arial Black, Gadget, sans-serif', fontSize:'20px', padding:'10px', color: '#4285f4', fontSize:'50px'}}>The Mahardika FnB</h4>
                 <div className="row justify-content-md-center">
                     <div className="col-md-8">
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <label>Email</label>
-                                <input type="text" className="form-control" placeholder="Enter email" name="email" onChange={this.onChange}/>
+                                <input type="email" className="form-control" placeholder="Enter email" name="email" onChange={this.onChange} required/>
                             </div>
                             <div className="form-group">
                                 <label>Password</label>
-                                <input type="password" className="form-control" placeholder="Enter password" name="password" onChange={this.onChange} />
+                                <input type="password" className="form-control" placeholder="Enter password" name="password" onChange={this.onChange} required/>
                             </div>
-                            <button type="submit" className="btn btn-primary">Login</button>
+                            <button type="submit" className="btn btn-primary" align='right'>Login</button>
                         </form>
                     </div>
                 </div>

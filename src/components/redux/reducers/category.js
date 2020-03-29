@@ -64,10 +64,10 @@ const category = (state = initialState, action) => {
                 ...state
             }
         case 'DELETE_CATEGORY_FULFILLED':
-            const newCategoryAfterDelete = state.categorys.filter(category => category.id !== action.payload.data.result)
+            const newCategoryAfterDelete = state.categories.filter(category => category.id !== action.payload.data.result)
             return {
                 ...state,
-                category: newCategoryAfterDelete
+                categories: newCategoryAfterDelete
             }
         default:
             return state;
