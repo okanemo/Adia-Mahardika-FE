@@ -131,7 +131,6 @@ class AdminProducts extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     products: state.products.products,
     pagination: state.products.pagination

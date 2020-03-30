@@ -33,7 +33,6 @@ class EditCategory extends Component {
         }
         await this.props.dispatch(patchCategory(data, id))
         await this.props.onHide()
-        console.log(data)
     }
 
     render() {

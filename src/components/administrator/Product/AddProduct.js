@@ -63,7 +63,6 @@ class AddProduct extends Component {
     }
     render() {
         const { show, onHide, categories } = this.props
-        console.log(this.props)
         return (
             <Modal show={show} onHide={onHide}>
                 <Modal.Header closeButton>
@@ -112,7 +111,6 @@ class AddProduct extends Component {
     }
 }
 const mapStateToProps = (state) => {
-console.log(state)
     return {
         categories: state.category.categories
     }

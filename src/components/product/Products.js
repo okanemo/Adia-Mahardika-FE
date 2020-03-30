@@ -32,8 +32,7 @@ class Products extends Component {
     this.props.dispatch(addCart(data))
   }
 
-  parseToRupiah(number)
-  {
+  parseToRupiah(number) {
 	var rupiah = '';		
 	var numberrev = number.toString().split('').reverse().join('')
 	for(var i = 0; i < numberrev.length; i++) if(i%3 == 0) rupiah += numberrev.substr(i,3)+'.'
@@ -88,7 +87,6 @@ class Products extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     products: state.products.products,
     pagination: state.products.pagination

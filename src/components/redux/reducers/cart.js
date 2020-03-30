@@ -4,8 +4,8 @@ const initialState = {
   }
   
   const cart = (state = initialState, action) => {
-    switch (action.type) {
-      case 'ADD_CART':
+      switch (action.type) {
+          case 'ADD_CART':
           let filterCartId = state.carts.map(cart => {
               if(cart.id === action.payload.id) {
                   cart.quantity += 1
@@ -26,7 +26,7 @@ const initialState = {
             return {
                 ...state,
                 carts: [...state.carts, action.payload],
-                total: newTotal
+                total: newTotal,
             }
         }
   
@@ -77,7 +77,15 @@ const initialState = {
                     total: state.total - existedCartDelete.price * existedCartDelete.quantity
                 }
             }
-      default:
+        
+        case 'CANCEL_CART':
+            return {
+                ...state,
+                carts:[],
+                total: 0
+            }
+      
+        default:
         return state
     }
   }

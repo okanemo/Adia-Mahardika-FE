@@ -18,10 +18,18 @@ export const addCart = (data) => {
         payload: id
       }
     }
-export const deleteCart = (data) => {
-    return {
+  export const deleteCart = (data) => {
+      return {
         type: 'DELETE_CART',
         payload: data
     }
-}
+  }
+  
+  export const cancelCart = (data) => {
+    return {
+      type: 'CANCEL_CART',
+      method: 'DELETE',
+      payload: data
+    }
+  }
   

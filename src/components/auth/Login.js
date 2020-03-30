@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+require ('dotenv').config()
 class Login extends Component{
     constructor(props){
         super(props);
@@ -25,12 +25,13 @@ class Login extends Component{
         event.preventDefault();
 
         axios
-            .post("http://localhost:5000/user/login", this.state)
+            .post(`${process.env.REACT_APP_API}/user/login`, this.state)
             .then(response => {
                 console.log(response.data);
                 localStorage.setItem('token', response.data.result.token);
                 localStorage.setItem('user-id', response.data.result.id);
                 localStorage.setItem('status', response.data.result.status);
+                localStorage.setItem('name', response.data.result.name)
                 localStorage.setItem('isAuth', true);
                 this.props.history.push('/');
             })
