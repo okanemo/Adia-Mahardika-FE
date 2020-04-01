@@ -8,6 +8,7 @@ import AdminProduct from './components/administrator/Product/AdminProduct';
 import AdminCategory from './components/administrator/Category/Category';
 import AdminUser from './components/administrator/User/User'
 import Login from './components/auth/Login'
+import History from './components/order/History'
 function App() {
   return (
     <Provider store={store}>
@@ -18,6 +19,7 @@ function App() {
           <Route exact path='/adminproduct' component={AdminProduct} />
           <Route exact path='/admincategory' component={AdminCategory} />
           <Route exact path='/adminuser' component={AdminUser} />
+          <Route exact path='/history' component={History}/>
         </div>
       </Router>
     </Provider>

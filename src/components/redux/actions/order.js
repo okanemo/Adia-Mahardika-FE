@@ -25,7 +25,23 @@ export const readOrder = () => {
         type: 'READ_ORDER',
         payload: axios({
             method: 'GET',
-            url: `${process.env.REACT_APP_API}/order`,
+            url: `${process.env.REACT_APP_API}/order/history`,
+            headers: {
+                "authorization": authorization,
+                "user-id": userId
+            }
+        })
+    }
+}
+
+export const chartOrder = (startDate, endDate) => {
+    const authorization = localStorage.getItem('token');
+    const userId = localStorage.getItem("user-id");
+    return {
+        type: 'GET_HISTORY',
+        payload: axios({
+            method: 'GET',
+            url: `${process.env.REACT_APP_API}/order/chart?start=${startDate}&end=${endDate}`,
             headers: {
                 "authorization": authorization,
                 "user-id": userId

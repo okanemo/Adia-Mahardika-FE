@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import login from '../../images/login.png'
+import './login.css'
+import logo from '../../images/logo.png'
 require ('dotenv').config()
 class Login extends Component{
     constructor(props){
@@ -42,24 +45,30 @@ class Login extends Component{
 
     render(){
         return(
-            <div className="container">
-                <h4 style={{ marginTop: '10px' }} align='center' style={{margin: 'auto', fontFamily: 'Arial Black, Gadget, sans-serif', fontSize:'20px', padding:'10px', color: '#4285f4', fontSize:'50px'}}>The Mahardika FnB</h4>
+        <Fragment>
+            <img className="backgroundLogin" src={login} alt="background-login"/>
+            
+            <div className="cardLogin">
+                <div className="card-body">
+                {/* <img src={logo} className="logo d-inline-block align-top" alt="logo"/> */}
                 <div className="row justify-content-md-center">
-                    <div className="col-md-8">
+                    <div className="col">
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <label>Email</label>
-                                <input type="email" className="form-control" placeholder="Enter email" name="email" onChange={this.onChange} required/>
+                                <input type="email" className="form-control" placeholder="ex: youremail@mail.com" name="email" onChange={this.onChange} required/>
                             </div>
                             <div className="form-group">
                                 <label>Password</label>
                                 <input type="password" className="form-control" placeholder="Enter password" name="password" onChange={this.onChange} required/>
                             </div>
-                            <button type="submit" className="btn btn-primary" align='right'>Login</button>
+                            <button type="submit" className="btn" align='right'style={{borderRadius:25, fontSize:'16px', color:'white', width:'100%', backgroundColor:'#E91E63', fontFamily:'Roboto, sans-serif', fontWeight:500}}>LOGIN</button>
                         </form>
+                        </div>
                     </div>
                 </div>
             </div>
+        </Fragment>
         )
     }
 }

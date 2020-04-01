@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import './AdminProduct.css'
 const AdminCardProduct = ({product, onSelectProductDelete, onSelectProductEdit, parseToRupiah}) => {
   const onClickDelete = (event) => {
     event.preventDefault()
@@ -12,7 +13,22 @@ const AdminCardProduct = ({product, onSelectProductDelete, onSelectProductEdit, 
 
   return(
     <Fragment>
-      <div className='col-6 col-md-4' key={product.id} style={{ marginBottom: "10px", paddingTop: "10px", paddingBottom: "10px"}}>
+      <tr>
+      <td class='manageProduct'>
+        <button type="button" class="btn btn-sm btn-outline-delete" data-toggle='modal' data-target='#deleteModal' style={{borderRadius:25, fontSize:'12px', color:'white'}} onClick={onClickDelete} data-dismiss='modal'>Delete</button>
+        <button type="button" class="btn btn-sm btn-edit" data-toggle='modal' data-target='#editModal' style={{borderRadius:25, fontSize:'12px', color:'white'}} onClick={onClickEdit}>Edit</button>
+    </td>
+    <td class='itemProduct'>{product.id}</td>
+    <td class='itemProduct'>{product.name}</td>
+    <td class='descProduct'>{product.description}</td>
+    <td class='itemProduct'><img src={product.image}alt={product.image} style={{ maxHeight: 50 }}/></td>
+    <td class='itemProduct'>{parseToRupiah(product.price)}</td>
+    <td class='itemProduct'>{product.quantity}</td>
+    <td class='itemProduct'>{product.category}</td>
+    <td class='descProduct'>{product.date_created}</td>
+    <td class='descProduct'>{product.date_updated}</td>
+    </tr>
+      {/* <div className='col-6 col-md-4' key={product.id} style={{ marginBottom: "10px", paddingTop: "10px", paddingBottom: "10px"}}>
          <div className='card' >
            <div className='view'>
              <img src={product.image} width={400} height={150} className='card-img-top' alt='...' />
@@ -29,7 +45,7 @@ const AdminCardProduct = ({product, onSelectProductDelete, onSelectProductEdit, 
              </div>
            </div>
          </div>
-       </div>
+       </div> */}
     </Fragment>
   )
 }

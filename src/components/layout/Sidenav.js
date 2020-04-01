@@ -135,7 +135,7 @@ state = {
       this.setState({
         category: event
       })
-      this.props.history.push(`/adminproduct?sortBy=${this.state.sortBy}&orderBy=${this.state.orderBy}&name=${this.state.name}&category=${event}&page=${this.state.page}`)
+      this.props.history.push(`/?sortBy=${this.state.sortBy}&orderBy=${this.state.orderBy}&name=${this.state.name}&category=${event}&page=${this.state.page}`)
       this.props.dispatch(modifyProduct( this.state.sortBy, this.state.orderBy, this.state.name, event, this.state.page));
     }
 
@@ -143,7 +143,7 @@ state = {
       this.setState({
         sortBy: event.target.value,
       })
-      this.props.history.push(`/adminproduct?sortBy=${event.target.value}&orderBy=${this.state.orderBy}&name=${this.state.name}&category=${this.props.category}&page=${this.state.page}`)
+      this.props.history.push(`/?sortBy=${event.target.value}&orderBy=${this.state.orderBy}&name=${this.state.name}&category=${this.props.category}&page=${this.state.page}`)
 
       this.props.dispatch(modifyProduct(event.target.value, this.state.orderBy, this.state.name, this.state.category, this.state.page));
     }
@@ -151,7 +151,7 @@ state = {
       this.setState({
         orderBy: event.target.value,
       })
-      this.props.history.push(`/adminproduct?sortBy=${this.state.sortBy}&orderBy=${event.target.value}&name=${this.state.name}&category=${this.props.category}&page=${this.state.page}`)
+      this.props.history.push(`/?sortBy=${this.state.sortBy}&orderBy=${event.target.value}&name=${this.state.name}&category=${this.props.category}&page=${this.state.page}`)
 
       this.props.dispatch(modifyProduct(this.state.sortBy, event.target.value, this.state.name, this.state.category, this.state.page));
     }

@@ -22,7 +22,6 @@ class Products extends Component {
 
   getAllProduct () {
     this.props.dispatch(getAllProduct())
-    // console.log(this.getAllProduct)
   }
 
   componentDidMount () {

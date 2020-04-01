@@ -102,7 +102,7 @@ state = {
   render(){
     const { categories } = this.props
   return (
-      <SideNav style={{ backgroundColor: 'transparent' }}>
+      <SideNav style={{ backgroundColor: 'transparent', marginTop: '75px' }}>
         <SideNav.Nav>
           <NavItem>
             <NavIcon style={{ backgroundColor: 'white' }}>

@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import {addCart, addQuantity, reduceQuantity, deleteCart, cancelCart} from '../redux/actions/cart'
-import {checkout} from '../redux/actions/order'
-import Checkout from './Checkout'
+import Checkout from '../order/Checkout'
+import empty from '../../images/empty-cart.png'
 class Cart extends Component {
     state ={
         show: false,
@@ -39,27 +39,13 @@ class Cart extends Component {
             show: false
         })
     }
-    // pushClose = (event) => {
-    //     event.preventDefault()
-    //     this.props.history.push('/history')
-    // }
-    // checkout = (event) => {
-    //     event.preventDefault()
-    //     this.setState({
-    //         show: true
-    //     })
-    //     const data = {
-    //         id_user: this.state.id,
-    //         total: this.props.total,
-    //         product: this.props.carts
-    //     }
-    //     this.props.dispatch(checkout(data))
-    // }
     
     render(){
         const {carts, total, parseToRupiah} = this.props
         return(
-            <div>
+            <Fragment>
+                {carts.length !== 0 ?
+            <div style={{marginTop:'25px'}}>
                 {carts.map((cart) =>
                     <li class="media" style={{ marginBottom: "10px", paddingTop: "10px", paddingBottom: "10px"}}>
                         <img src={cart.image} class="mr-3" alt="" style={{height:'64px', width:'64px', borderRadius:'12px 12px 12px 12px'}} />
@@ -87,6 +73,13 @@ class Cart extends Component {
                     </Row>
                     <Checkout show={this.state.show} onHide={this.handleClose}/>
             </div>
+            :
+            <div style={{textAlign:'center', marginTop:'100px'}}>
+                <img src={empty} style={{maxWidth: 250}} alt='empty-cart'/>
+                <h4>Your Cart is Empty</h4>
+            </div>
+            }
+        </Fragment>
         )
     }
 }

@@ -29,7 +29,7 @@ class Checkout extends Component {
 
     async checkout(cart) {
         const data = {
-            user_id: this.state.id,
+            user: this.state.id,
             product: this.props.carts,
             total: this.props.total
         }
@@ -41,7 +41,7 @@ class Checkout extends Component {
     render(){
         const {carts, total} = this.props
         return(
-            <Modal show={this.props.show} onHide={this.props.onHIde}>
+            <Modal show={this.props.show} onHide={this.props.onHide}>
                 <Modal.Header closeButton>
                     <Modal.Title>Checkout</Modal.Title>
                 </Modal.Header>

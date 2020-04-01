@@ -5,9 +5,10 @@ import { getAllProduct, paginationProduct, modifyProduct } from '../../redux/act
 import AdminCardProduct from './AdminCardProduct'
 import DeleteProduct from './DeleteProduct'
 import EditProduct from './EditProduct'
-import Sidenav from '../../layout/Sidenav'
+import AdminSidenav from '../../layout/AdminSidenav'
 import AdminNavbar from '../../layout/AdminNavbar'
 import { withRouter } from "react-router"
+import './AdminProduct.css'
 class AdminProducts extends Component {
       state = {
           sortBy: '',
@@ -21,13 +22,18 @@ class AdminProducts extends Component {
           selectProductEdit: null,
       }
 
-  // Add Product
 
   getAllProduct () {
     this.props.dispatch(getAllProduct())
   }
 
   componentDidMount () {
+    if(!localStorage.getItem('isAuth')){
+      this.props.history.push('/login')
+    }
+    if(!localStorage.getItem('status')==1){
+      this.props.history.push('/')
+    }
    this.getAllProduct()
   }
 
@@ -50,7 +56,6 @@ class AdminProducts extends Component {
   }
 
   onSelectProductDelete = (product) => {
-    // console.log(product)
     this.setState({
       selectProductDelete: product,
       showDelete: true
@@ -93,7 +98,6 @@ class AdminProducts extends Component {
   }
   render () {
     const { products, pagination } = this.props
-    // console.log(this.props)
     const showProduct = products.map((item, index) => {
       return (
         <AdminCardProduct product={item} key={index} onSelectProductDelete={this.onSelectProductDelete} onSelectProductEdit={this.onSelectProductEdit} parseToRupiah={this.parseToRupiah}/>
@@ -102,12 +106,32 @@ class AdminProducts extends Component {
     return (
       <Fragment>
       <AdminNavbar/>
-        <Sidenav sortCategory={this.sortCategory} sortBy={this.state.sortBy} orderBy={this.state.orderBy} name={this.state.name} category={this.state.category} page={this.state.page} />
+        <AdminSidenav sortCategory={this.sortCategory} sortBy={this.state.sortBy} orderBy={this.state.orderBy} name={this.state.name} category={this.state.category} page={this.state.page} />
         <div className='container'>
           <div className='row'>
-            <div className='col-lg-10'>
+            <h2 style={{fontSize:'40px', fontFamily: 'Source Sans Pro, sans-serif',fontWeight:700, marginTop:'12px', color:'#4285f4'}}>
+              Manage Product
+              </h2>
               <div className='row' style={{display:'flex', overflowY:'scroll', height:'90vh'}}>
-                {showProduct}
+                <table className="tableProduct table-bordered table-hover table-responsive">
+            <thead className="thead-light">
+              <tr>
+                <th scope="col">Manage</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name Product</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Category</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Date Updated</th>
+              </tr>
+            </thead>
+            <tbody>
+              {showProduct}
+            </tbody>
+          </table>
               </div>
               <div className="row">
               <nav aria-label="Page navigation example">
@@ -120,7 +144,6 @@ class AdminProducts extends Component {
                   </ul>
               </nav>
           </div>
-            </div>
           </div>
         </div>
         <DeleteProduct show={this.state.showDelete} onHide={this.handleCloseDelete} product={this.state.selectProductDelete}/>
