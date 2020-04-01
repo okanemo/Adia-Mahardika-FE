@@ -23,7 +23,6 @@ class Navbar extends Component {
             if (localStorage.getItem('status') == '1') {
                 return (
                     <Fragment>
-                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{margin: 'auto', fontFamily: 'Source Sans Pro, sans-serif', fontWeight:600, fontSize:'20px', padding:'10px', color: 'white' }}>
                             Administrator
@@ -34,17 +33,14 @@ class Navbar extends Component {
                             <Link class="dropdown-item" to="/adminuser">Cashier</Link>
                             </div>
                         </li>
-                    </ul>
                     </Fragment>
                 )
             } else  {
                 return(
                     <Fragment>
-                        <ul className='navbar-nav mr-auto'>
                             <li className='nav-item' >
                                 <Link className='nav-link' to='/' style={{margin: 'auto', fontFamily: 'Source Sans Pro, sans-serif', fontWeight:600, fontSize:'20px', padding:'10px', color: 'white' }}>Cashier</Link>
                             </li>
-                        </ul>
                     </Fragment>
                 )
             }
@@ -58,7 +54,12 @@ class Navbar extends Component {
               <div className='container'>
                   <div className='col-lg-10'>
                       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+                        <ul className='navbar-nav mr-auto'>
                         <Hidden/>
+                            <li className='nav-item' >
+                                <Link className='nav-link' to='/history' style={{margin: 'auto', fontFamily: 'Source Sans Pro, sans-serif', fontWeight:600, fontSize:'20px', padding:'10px', color: 'white' }}>History</Link>
+                            </li>
+                        </ul>
                           <ul className='navbar-nav mr-auto' style={{margin:'auto'}}>
                               <li className='nav-item' >
                                   <Link className='nav-link' to='/' style={{margin: 'auto', fontFamily: 'Source Sans Pro, sans-serif', fontWeight:800, fontSize:'28px', padding:'10px', color: 'white' }}>The Mahardika FnB</Link>

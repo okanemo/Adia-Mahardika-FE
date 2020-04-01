@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-import { Button } from 'react-bootstrap';
-
+import './Category.css'
 const CategoryItem = ({ category, onSelectCategoryEdit, onSelectCategoryDelete }) => {
     const onClickEditCategory = (event) => {
         event.preventDefault();
@@ -13,10 +12,13 @@ const CategoryItem = ({ category, onSelectCategoryEdit, onSelectCategoryDelete }
     return (
         <Fragment>
             <tr>
-                <td>{category.id}</td>
-                <td>{category.name}</td>
-                <td><Button variant="warning" size="sm" onClick={onClickEditCategory}>Edit</Button> - <Button variant="danger" size="sm" onClick={onClickDeleteCategory}>Delete</Button></td>
-            </tr>
+      <td class='manageCategory'>
+        <button type="button" class="btn btn-sm btn-outline-delete" data-toggle='modal' data-target='#deleteModal' style={{borderRadius:25, fontSize:'12px', color:'white'}} onClick={onClickDeleteCategory} data-dismiss='modal'>Delete</button>
+        <button type="button" class="btn btn-sm btn-edit" data-toggle='modal' data-target='#editModal' style={{borderRadius:25, fontSize:'12px', color:'white'}} onClick={onClickEditCategory}>Edit</button>
+    </td>
+    <td class='itemCategory'>{category.id}</td>
+    <td class='itemCategory'>{category.name}</td>
+    </tr>
         </Fragment>
     )
 }

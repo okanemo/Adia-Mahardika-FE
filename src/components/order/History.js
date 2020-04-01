@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { chartOrder } from "../redux/actions/order";
 import { Line } from "react-chartjs-2";
 import moment from 'moment'
-import Sidenav from "../layout/Sidenav";
 import Navbar from "../layout/Navbar";
 
 class History extends Component {
@@ -76,14 +75,12 @@ class History extends Component {
     return (
       <>
               <Navbar onLogout={this.onLogout.bind(this)}/>
+        <div className='container'>
         <div className="row">
           <div className="col-md-10">
             <div className="col-md-12">
             </div>
             <div className="row">
-              <div className="col-md-1">
-                <Sidenav />
-              </div>
               <div className="col-md-11">
                 <div className="row" style={{marginTop: "10px"}}>
                   <div className="col-md-5">
@@ -107,6 +104,7 @@ class History extends Component {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </>
     );

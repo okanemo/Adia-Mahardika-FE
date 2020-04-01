@@ -112,7 +112,7 @@ class AdminProducts extends Component {
             <h2 style={{fontSize:'40px', fontFamily: 'Source Sans Pro, sans-serif',fontWeight:700, marginTop:'12px', color:'#4285f4'}}>
               Manage Product
               </h2>
-              <div className='row' style={{display:'flex', overflowY:'scroll', height:'90vh'}}>
+              <div className='row' style={{display:'flex', overflowY:'scroll', height:'75vh'}}>
                 <table className="tableProduct table-bordered table-hover table-responsive">
             <thead className="thead-light">
               <tr>

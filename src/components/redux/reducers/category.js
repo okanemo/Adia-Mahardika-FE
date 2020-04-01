@@ -29,10 +29,9 @@ const category = (state = initialState, action) => {
             }
         
         case 'POST_CATEGORY_FULFILLED':
-            const newDataCategory = [...state.categories, action.payload.data.result];
             return{
                 ...state,
-                categories: newDataCategory
+                categories: action.payload.data.result
             }
         case 'PATCH_CATEGORY_PENDING':
             return{
@@ -45,15 +44,9 @@ const category = (state = initialState, action) => {
             }
         
         case 'PATCH_CATEGORY_FULFILLED':
-            const newCategoryAfterUpdate = state.categories.map(category => {
-                if (category.id === action.payload.data.result.id) {
-                    return action.payload.data.result;
-                }
-                return category;
-            })
             return {
                 ...state,
-                categories: newCategoryAfterUpdate
+                categories: action.payload.data.result
             }
         case 'DELETE_CATEGORY_PENDING':
             return {
@@ -64,10 +57,9 @@ const category = (state = initialState, action) => {
                 ...state
             }
         case 'DELETE_CATEGORY_FULFILLED':
-            const newCategoryAfterDelete = state.categories.filter(category => category.id !== action.payload.data.result)
             return {
                 ...state,
-                categories: newCategoryAfterDelete
+                categories: action.payload.data.result
             }
         default:
             return state;

@@ -118,19 +118,6 @@ state = {
         })
     }
 
-    // filterProduct = (event) => {
-    //   this.setState({
-    //     category: event
-    //   })
-    //   console.log(event)
-    //   this.props.dispatch(filterProduct( event));
-    // }
-    // sortProduct = (event) => {
-    //   this.setState({
-    //     sortBy: event.target.value
-    //   })
-    //   this.props.dispatch(sortProduct(event.target.value, this.state.sortBy));
-    // }
     filterProduct = (event) => {
       this.setState({
         category: event
@@ -182,7 +169,7 @@ state = {
       }
     }
   return (
-      <SideNav style={{ backgroundColor: 'transparent' }}>
+      <SideNav style={{ backgroundColor: 'transparent', marginTop:'20px' }}>
         <SideNav.Nav>
           <NavItem>
             <NavIcon style={{ backgroundColor: 'white' }}>

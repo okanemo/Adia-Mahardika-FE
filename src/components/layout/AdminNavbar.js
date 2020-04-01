@@ -46,6 +46,9 @@ class AdminNavbar extends Component {
                             <Link class="dropdown-item" to="/adminuser">Cashier</Link>
                             </div>
                         </li>
+                        <li className='nav-item' >
+                                <Link className='nav-link' to='/history' style={{margin: 'auto', fontFamily: 'Source Sans Pro, sans-serif', fontWeight:600, fontSize:'20px', padding:'10px', color: 'white' }}>History</Link>
+                            </li>
                         </ul>
                           <ul className='navbar-nav mr-auto' style={{margin:'auto'}}>
                               <li className='nav-item' >

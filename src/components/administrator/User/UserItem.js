@@ -1,17 +1,20 @@
 import React, { Fragment } from 'react';
 import { Button } from 'react-bootstrap';
-
+import './User.css'
 const UserItem = ({ user }) => {
 
     return (
         <Fragment>
             <tr>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.status}</td>
-                <td>{user.date_updated}</td>
-                <td><Button variant="warning" size="sm">Edit</Button> - <Button variant="danger" size="sm">Delete</Button></td>
+            <td class='manageUser'>
+                <button type="button" class="btn btn-sm btn-outline-delete" data-toggle='modal' data-target='#deleteModal' style={{borderRadius:25, fontSize:'12px', color:'white'}}data-dismiss='modal'>Delete</button>
+                <button type="button" class="btn btn-sm btn-edit" data-toggle='modal' data-target='#editModal' style={{borderRadius:25, fontSize:'12px', color:'white'}}>Edit</button>
+            </td>
+            <td class='itemUser'>{user.id}</td>
+            <td class='itemUser'>{user.name}</td>
+            <td class='itemUser'>{user.email}</td>
+            <td class='itemUser'>{user.status}</td>
+            <td class='itemUser'>{user.date_updated}</td>
             </tr>
         </Fragment>
     )

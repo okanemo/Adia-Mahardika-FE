@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { Container, Row, Col, Table } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { getAllCategory } from '../../redux/actions/category';
@@ -8,6 +7,7 @@ import AdminSidenav from '../../layout/AdminSidenav'
 import CategoryItem from './CategoryItem'
 import EditCategory from './EditCategory'
 import DeleteCategory from './DeleteCategory'
+import './Category.css'
 
 class Category extends Component {
   state = {
@@ -65,30 +65,29 @@ class Category extends Component {
       <Fragment>
         <AdminNavbar/>
         <AdminSidenav/>
-        <Container>
-          <Row style={{ marginTop: "20px", marginBottom: "20px" }}>
-            <Col>
-              <h4>CATEGORY</h4>
-            </Col>
-          </Row>
-          <Row style={{ marginTop: "20px", marginBottom: "20px" }}>
-          </Row>
-          <Row>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>NAME</th>
-                </tr>
-              </thead>
-              <tbody>
-                {listCategories}
-              </tbody>
-            </Table>
-          </Row>
+        <div className='container'>
+          <div className='row'>
+            <h2 style={{fontSize:'40px', fontFamily: 'Source Sans Pro, sans-serif',fontWeight:700, marginTop:'12px', color:'#4285f4'}}>
+              Manage Category
+              </h2>
+              <div className='row'>
+                <table className="tableCategory table-bordered table-hover">
+            <thead className="thead-light">
+              <tr>
+                <th scope="col">Manage</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              {listCategories}
+            </tbody>
+          </table>
+              </div>
+          </div>
+        </div>
           <EditCategory show={this.state.showEdit} onHide={this.onCloseEdit} category={this.state.selectCategoryEdit} />
           <DeleteCategory show={this.state.showDelete} onHide={this.onCloseDelete} category={this.state.selectCategoryDelete} />
-        </Container>
       </Fragment>
     )
   }
