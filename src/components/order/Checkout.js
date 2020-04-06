@@ -46,21 +46,24 @@ class Checkout extends Component {
                     <Modal.Title>Checkout</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                        <Row>
+                            <Col>Name</Col>
+                            <Col style={{textAlign:'center'}}>Quantity</Col>
+                            <Col>Price</Col>
+                        </Row>
                     {carts.map(cart => (
                         <Row>
-                            <Col>
-                                <ul>{cart.name}</ul>
-                            </Col>
-                            <Col>
-                                <ul>{cart.quantity}</ul>
-                            </Col>
-                            <Col>{this.parseToRupiah(cart.price * cart.quantity)}</Col>
+                            <Col>{cart.name}</Col>
+                            <Col style={{textAlign:'center'}}>{cart.qty}</Col>
+                            <Col>{this.parseToRupiah(cart.price * cart.qty)}</Col>
                         </Row>
                     ))}
-                    <Row>{this.parseToRupiah(total)}</Row>
+                    <Row style={{textAlign:'right'}}>Total : {this.parseToRupiah(total)}</Row>
+                </Modal.Body>
+                <Modal.Footer>
                     <Row>Cashier: {this.state.name}</Row>
                     <Button onClick={()=> this.checkout(carts)}>Confirm</Button>
-                </Modal.Body>
+                </Modal.Footer>
             </Modal>
         )
     }

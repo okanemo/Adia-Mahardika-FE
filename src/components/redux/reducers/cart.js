@@ -8,7 +8,7 @@ const initialState = {
           case 'ADD_CART':
           let filterCartId = state.carts.map(cart => {
               if(cart.id === action.payload.id) {
-                  cart.quantity += 1
+                  cart.qty += 1
                   return action.payload
               }
               return cart
@@ -22,7 +22,7 @@ const initialState = {
             }
         } else {
             let newTotal = state.total + action.payload.price
-            action.payload.quantity = 1
+            action.payload.qty = 1
             return {
                 ...state,
                 carts: [...state.carts, action.payload],
@@ -33,7 +33,7 @@ const initialState = {
       case 'ADD_QUANTITY':
         const addQuantity = state.carts.map(product => {
             if (product.id === action.payload) {
-                product.quantity += 1
+                product.qty += 1
             }
             return product
         })
@@ -49,13 +49,13 @@ const initialState = {
         case 'REDUCE_QUANTITY':
           const reduceQuantity = state.carts.map(product => {
               if(product.id === action.payload) {
-                  product.quantity = product.quantity - 1
+                  product.qty = product.qty - 1
               }
               return product
           })
           let existedCartReduce= state.carts.find(product => product.id === action.payload)
-          if (existedCartReduce.quantity <= 0) {
-              existedCartReduce.quantity = 1
+          if (existedCartReduce.qty <= 0) {
+              existedCartReduce.qty = 1
               return {
                   ...state
               }
@@ -68,13 +68,13 @@ const initialState = {
           }
 
         case 'DELETE_CART':
-            const filterCartIdforDelete = state.carts.filter(product => product.id == action.payload)
-            let existedCartDelete = state.carts.find(product => product.id === action.payload)
+            const filterCartIdforDelete = state.carts.filter(product => product.id !== action.payload.id)
+            let existedCartDelete = state.carts.find(product => product.id === action.payload.id)
             if (existedCartDelete) {
                 return {
                     ...state,
                     carts: filterCartIdforDelete,
-                    total: state.total - existedCartDelete.price * existedCartDelete.quantity
+                    total: state.total - existedCartDelete.price * existedCartDelete.qty
                 }
             }
         

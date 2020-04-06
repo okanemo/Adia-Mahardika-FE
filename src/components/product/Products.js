@@ -75,7 +75,7 @@ class Products extends Component {
                     </nav>
                 </div>
           </div>
-          <div className='col-lg-3'>
+          <div className='col-lg-3' >
             <Cart parseToRupiah={this.parseToRupiah}/>
           </div>
         </div>

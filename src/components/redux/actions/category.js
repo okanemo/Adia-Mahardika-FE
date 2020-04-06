@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+require ('dotenv').config()
 export const getAllCategory = () => {
     const authorization = localStorage.getItem('token');
     const userId = localStorage.getItem("user-id");
@@ -7,7 +7,7 @@ export const getAllCategory = () => {
         type: 'GET_CATEGORY',
         payload: axios({
             method: "GET",
-            url: "http://localhost:5000/category",
+            url: `${process.env.REACT_APP_API}/category`,
         headers: {
             "authorization": authorization,
             "user-id": userId
@@ -21,7 +21,7 @@ export const postCategory = (data) => {
         type: 'POST_CATEGORY',
         payload: axios({
             method: "POST",
-            url: "http://localhost:5000/category",
+            url: `${process.env.REACT_APP_API}/category`,
             data: data
         })
     }
@@ -32,7 +32,7 @@ export const patchCategory = (data, categoryId) => {
         type: 'PATCH_CATEGORY',
         payload: axios({
             method: "PATCH",
-            url: `http://localhost:5000/category/${categoryId}`,
+            url: `${process.env.REACT_APP_API}/category${categoryId}`,
             data: data
         })
     }
@@ -43,7 +43,7 @@ export const deleteCategory = ( categoryId) => {
         type: 'DELETE_CATEGORY',
         payload: axios({
             method: "DELETE",
-            url: `http://localhost:5000/category/${categoryId}`
+            url: `${process.env.REACT_APP_API}/category${categoryId}`
         })
     }
 }
