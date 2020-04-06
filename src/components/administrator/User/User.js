@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { Container, Row, Col, Table } from 'react-bootstrap';
 import AdminNavbar from '../../layout/AdminNavbar'
 import AdminSidenav from '../../layout/AdminSidenav'
 import { connect } from 'react-redux';
@@ -47,31 +46,6 @@ class User extends Component {
               </div>
           </div>
         </div>
-        {/* <Container>
-          <Row style={{ marginTop: "20px", marginBottom: "20px" }}>
-            <Col>
-              <h4>USER</h4>
-            </Col>
-          </Row>
-          <Row style={{ marginTop: "20px", marginBottom: "20px" }}>
-          </Row>
-          <Row>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>NAME</th>
-                  <th>EMAIL</th>
-                  <th>STATUS</th>
-                  <td>DATE UPDATED</td>
-                </tr>
-              </thead>
-              <tbody>
-                {listUser}
-              </tbody>
-            </Table>
-          </Row>
-        </Container> */}
       </Fragment>
     )
   }

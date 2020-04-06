@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import SideNav, { NavItem, NavIcon } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-import { filterProduct, sortProduct, modifyProduct } from '../redux/actions/product';
+import { modifyProduct } from '../redux/actions/product';
 import {getAllCategory} from '../redux/actions/category'
 import { connect } from "react-redux";
 import AddProduct from '../administrator/Product/AddProduct'
 import AddCategory from '../administrator/Category/AddCategory'
-import { Link } from 'react-router-dom'
 import AddUser from '../administrator/User/AddUser'
 import { withRouter } from "react-router"
 
@@ -58,19 +57,6 @@ state = {
         })
     }
 
-    // filterProduct = (event) => {
-    //   this.setState({
-    //     category: event
-    //   })
-    //   console.log(event)
-    //   this.props.dispatch(filterProduct( event));
-    // }
-    // sortProduct = (event) => {
-    //   this.setState({
-    //     sortBy: event.target.value
-    //   })
-    //   this.props.dispatch(sortProduct(event.target.value, this.state.sortBy));
-    // }
     filterProduct = (event) => {
       this.setState({
         category: event
@@ -131,7 +117,6 @@ state = {
                   </div>
                 </div>
 
-                {/* Add Product */}
                 <div class='btn-group dropright' style={{display: 'block',marginTop:"10px", marginLeft:"2px"}}>
                 <button type='button' className='fa fa-fw fa-plus' style={{ fontSize: '1.75em', color: '#e91e63', display: 'block', border: 'none', backgroundColor: 'transparent', padding: '10px' }}  data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'/>
                 <div class='dropdown-menu'>

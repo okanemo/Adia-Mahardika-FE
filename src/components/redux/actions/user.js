@@ -20,12 +20,13 @@ export const deleteUser = (userId) => {
     }
 }
 
-export const postUser = () => {
+export const postUser = (data) => {
     return{
         type: 'POST_USER',
         payload: axios({
             method: "POST",
-            url: `${process.env.REACT_APP_API}/user/register`
+            url: `${process.env.REACT_APP_API}/user/register`,
+            data: data
         })
     }
 }

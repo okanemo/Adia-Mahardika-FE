@@ -4,7 +4,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { postProduct } from '../../redux/actions/product'
 import { getAllCategory } from '../../redux/actions/category'
-
+import {withRouter} from 'react-router-dom'
 class AddProduct extends Component {
     state = {
         name:'',
@@ -19,7 +19,6 @@ class AddProduct extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
-        // console.log(event.target.value)
     }
 
     onChangeImage = event => {
@@ -37,7 +36,6 @@ class AddProduct extends Component {
         return alert("Only can upload image!!")
         this.setState({
             image:image
-            // [event.target.name]: event.target.files[0]
         })
     }
 
@@ -54,8 +52,7 @@ class AddProduct extends Component {
 
         await this.props.dispatch(postProduct(data));
         this.props.onHide();
-        // const {history} = this.props
-        // history.push('/adminproduct')
+        this.props.history.push('/adminproduct')
     }
 
     componentDidMount () {
@@ -117,4 +114,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(AddProduct);
+export default withRouter(connect(mapStateToProps)(AddProduct));

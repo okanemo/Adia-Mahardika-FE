@@ -74,7 +74,6 @@ class AdminProducts extends Component {
   }
 
   onSelectProductEdit = (product) => {
-    // console.log(product)
     this.setState({
       selectProductEdit: product,
       showEdit: true
@@ -87,10 +86,6 @@ class AdminProducts extends Component {
 	for(var i = 0; i < numberrev.length; i++) if(i%3 == 0) rupiah += numberrev.substr(i,3)+'.'
 	return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('')
   }
-  // paginationProduct = (event) => {
-  //   // console.log(paginationProduct)
-  //   this.props.dispatch(paginationProduct(event.target.id))
-  // }
   paginationProduct = (event) => {
     this.props.history.push(`/adminproduct?sortBy=${this.state.sortBy}&orderBy=${this.state.orderBy}&name=${this.state.name}&category=${this.props.category}&page=${event.target.id}`)
     console.log(event)

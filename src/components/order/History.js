@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import Calendar from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { chartOrder } from "../redux/actions/order";
@@ -25,8 +25,14 @@ class History extends Component {
           this.props.history.push('/login')
       }
   }
-  onStart = event => this.setState({ start: event });
-  onEnd = event => this.setState({ end: event });
+  onStart = (event) => {
+    console.log(event)
+    this.setState({ start: event })
+  }
+  onEnd = event => {
+    console.log(event)
+    this.setState({ end: event })
+  }
 
   onSubmit = event => {
     event.preventDefault();
@@ -53,16 +59,16 @@ class History extends Component {
           fill: false,
           lineTension: 0.1,
           backgroundColor: "rgba(75,192,192,0.4)",
-          borderColor: "rgba(75,192,192,1)",
+          borderColor: "#4285f4",
           borderCapStyle: "butt",
           borderDash: [],
           borderDashOffset: 0.0,
           borderJoinStyle: "miter",
-          pointBorderColor: "rgba(75,192,192,1)",
+          pointBorderColor: "#4285f4",
           pointBackgroundColor: "#fff",
           pointBorderWidth: 1,
           pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          pointHoverBackgroundColor: "#4285f4",
           pointHoverBorderColor: "rgba(220,220,220,1)",
           pointHoverBorderWidth: 2,
           pointRadius: 1,
@@ -74,8 +80,8 @@ class History extends Component {
 
     return (
       <>
-              <Navbar onLogout={this.onLogout.bind(this)}/>
-        <div className='container'>
+        <Navbar onLogout={this.onLogout.bind(this)}/>
+        <div className='container' style={{ textAlign:'center'}}>
         <div className="row">
           <div className="col-md-10">
             <div className="col-md-12">
@@ -87,12 +93,12 @@ class History extends Component {
                     <div>Start Date</div>
                     <Calendar
                       onChange={this.onStart}
-                      value={this.state.start}
+                      selected={this.state.start}
                     />
                   </div>
                   <div className="col-md-5">
                     <div> End Date</div>
-                    <Calendar onChange={this.onEnd} value={this.state.end} />
+                    <Calendar onChange={this.onEnd} selected={this.state.end} />
                   </div>
                   <div className="col-md-2">
                     <Button onClick={this.onSubmit}>Submit</Button>
