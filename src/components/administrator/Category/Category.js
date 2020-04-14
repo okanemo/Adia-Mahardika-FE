@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-
 import { connect } from 'react-redux';
 import { getAllCategory } from '../../redux/actions/category';
 import AdminNavbar from '../../layout/AdminNavbar'
@@ -65,9 +64,9 @@ class Category extends Component {
       <Fragment>
         <AdminNavbar/>
         <AdminSidenav/>
-        <div className='container'>
+        <div className='container category'>
           <div className='row'>
-            <h2 style={{fontSize:'40px', fontFamily: 'Source Sans Pro, sans-serif',fontWeight:700, marginTop:'12px', color:'#4285f4'}}>
+            <h2 className='title-category'>
               Manage Category
               </h2>
               <div className='row'>

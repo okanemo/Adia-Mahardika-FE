@@ -1,12 +1,18 @@
-body {
+  body {
     margin: 0;
     padding: 0;
-  }
-  
-  body {
     background-color: #ffffff;
     font-family: "Roboto", sans-serif;
   }
+  
+  .title-category{
+    font-size: 40px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    margin-top: 12px;
+    color: #4285f4;
+  }
+
   .tableCategory{
     margin-top: 75px;
     margin-bottom: 20px;
@@ -34,6 +40,11 @@ body {
   
   .manageCategory{
     min-width: 250px;
+  }
+  .manageCategory .btn{
+    border-radius: 25px;
+    font-size: 12px;
+    color: white;
   }
   .btn-edit{
     background-color:#4285f4 !important;
