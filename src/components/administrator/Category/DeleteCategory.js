@@ -25,8 +25,8 @@ const DeleteCategory = (props) => {
                 <p>Are you sure want to delete this  category{category ? category.name : ""} ?</p>
             </Modal.Header>
             <Modal.Body align='right'>
-                <Button variant="primary" size="sm" onClick={onCancelHandle} style={{ marginRight: "10px" }}>Cancel</Button>
-                <Button variant="danger" size="sm" onClick={onDeleteHandle}>Delete</Button>
+                <Button variant="primary" size="md" onClick={onCancelHandle} style={{ marginRight: "10px" }}>Cancel</Button>
+                <Button variant="outline-primary" size="md" onClick={onDeleteHandle}>Delete</Button>
             </Modal.Body>
         </Modal>
     )

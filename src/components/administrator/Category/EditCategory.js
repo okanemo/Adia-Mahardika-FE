@@ -48,7 +48,7 @@ class EditCategory extends Component {
                             <Form.Label>NAME</Form.Label>
                             <Form.Control type="text" placeholder="Insert Name" name="name" onChange={this.onChangeValue} />
                         </Form.Group>
-                        <Button align='right' variant="primary" type="submit">
+                        <Button variant="primary" type="submit">
                             SUBMIT
                         </Button>
                     </Form>
