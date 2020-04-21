@@ -1,11 +1,20 @@
-body {
-    margin: 0;
-    padding: 0;
-  }
-  
   body {
     background-color: #ffffff;
     font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .title-product{
+    font-size: 40px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    margin-top: 12px;
+    color: #4285f4;
+  }
+  .row.product{
+    display: flex;
+    overflow-y: scroll;
+    height: 75vh;
   }
   .tableProduct{
     margin-top: 10px;
@@ -39,6 +48,11 @@ body {
   }
   .manageProduct{
     min-width: 250px;
+  }
+  .btn.btn-md{
+    border-radius: 25px;
+    font-size: 16px;
+    color: white;
   }
   .btn-edit{
     background-color:#4285f4 !important;

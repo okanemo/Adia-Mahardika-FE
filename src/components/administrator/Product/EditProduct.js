@@ -65,7 +65,6 @@ class EditProduct extends Component {
     //     this.props.dispatch(getAllCategory())
     // }
     render() {
-        //console.log(this.state)
         const { show, onHide, categories } = this.props
         return (
             <Modal show={show} onHide={onHide}>

@@ -24,10 +24,10 @@ class User extends Component {
         <AdminSidenav/>
         <div className='container'>
           <div className='row'>
-            <h2 style={{fontSize:'40px', fontFamily: 'Source Sans Pro, sans-serif',fontWeight:700, marginTop:'12px', color:'#4285f4'}}>
+            <h2 className='title-user'>
               Manage User
               </h2>
-              <div className='row'  style={{display:'flex', overflowY:'scroll', height:'75vh'}}>
+              <div className='row user'>
                 <table className="tableUser table-bordered table-hover table-responsive">
             <thead className="thead-light">
               <tr>

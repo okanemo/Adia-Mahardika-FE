@@ -46,6 +46,9 @@
     font-size: 12px;
     color: white;
   }
+  .btn.btn-md{
+    border-radius: 25px;
+  }
   .btn-edit{
     background-color:#4285f4 !important;
     border: none;

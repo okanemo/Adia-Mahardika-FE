@@ -3,7 +3,7 @@ import { Modal, Button, Row, Col} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import {checkout} from '../redux/actions/order'
 import { cancelCart } from '../redux/actions/cart'
-
+import './order.css'
 class Checkout extends Component {
     constructor(props){
         super(props)

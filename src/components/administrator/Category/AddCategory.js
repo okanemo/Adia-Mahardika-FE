@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-
+import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 import { postCategory } from '../../redux/actions/category'
 
@@ -20,7 +20,7 @@ class AddCategory extends Component {
 
         await this.props.dispatch(postCategory(this.state));
         await this.props.onHide();
-        // this.props.history.push('/adminproduct')
+        this.props.history.push('/admincategory')
     }
 
     render() {
@@ -48,4 +48,4 @@ class AddCategory extends Component {
 
 
 
-export default connect()(AddCategory);
+export default withRouter(connect()(AddCategory));

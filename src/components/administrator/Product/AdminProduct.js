@@ -104,10 +104,10 @@ class AdminProducts extends Component {
         <AdminSidenav sortCategory={this.sortCategory} sortBy={this.state.sortBy} orderBy={this.state.orderBy} name={this.state.name} category={this.state.category} page={this.state.page} />
         <div className='container'>
           <div className='row'>
-            <h2 style={{fontSize:'40px', fontFamily: 'Source Sans Pro, sans-serif',fontWeight:700, marginTop:'12px', color:'#4285f4'}}>
+            <h2 className='title-product'>
               Manage Product
               </h2>
-              <div className='row' style={{display:'flex', overflowY:'scroll', height:'75vh'}}>
+              <div className='row product'>
                 <table className="tableProduct table-bordered table-hover table-responsive">
             <thead className="thead-light">
               <tr>
