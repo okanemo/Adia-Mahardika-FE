@@ -58,7 +58,7 @@ class Checkout extends Component {
                             <Col>{this.parseToRupiah(cart.price * cart.qty)}</Col>
                         </Row>
                     ))}
-                    <Row style={{textAlign:'right'}}>Total : {this.parseToRupiah(total)}</Row>
+                    <Row>Total : {this.parseToRupiah(total)}</Row>
                 </Modal.Body>
                 <Modal.Footer>
                     <Row>Cashier: {this.state.name}</Row>

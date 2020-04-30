@@ -19,7 +19,7 @@ class AdminProducts extends Component {
           showDelete: false,
           showEdit: false,
           selectProductDelete: null,
-          selectProductEdit: null,
+          selectProductEdit: [],
       }
 
 
